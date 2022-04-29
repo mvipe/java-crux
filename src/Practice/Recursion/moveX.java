@@ -10,6 +10,7 @@ public class moveX {
 
         move(str,"",0,0);
 
+
     }
 
     static void move(String str,String withoutX,int countX,int ind){
