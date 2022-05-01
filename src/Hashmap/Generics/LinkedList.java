@@ -52,6 +52,10 @@ public class LinkedList<T> {
         size++;
     }
 
+    public boolean isEmpty(){
+        return this.size==0;
+    }
+
 
 
 
@@ -84,15 +88,16 @@ public class LinkedList<T> {
         return val;
     }
 
-    public Node find(T value) {
-        Node node = head;
-        while (node != null) {
-            if (node.value == value) {
-                return node;
-            }
-            node = node.next;
-        }
-        return null;
+    public int find(T value) {
+        Node temp = this.head;
+        int index =0;
+       for(;temp!=null;temp=temp.next){
+          if(temp.value.equals(value)){
+              return index;
+          }
+          index++;
+       }
+        return -1;
     }
 
     public Node get(int index) {
