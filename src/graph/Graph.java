@@ -171,6 +171,7 @@ public class Graph {
             //check direct edge
 
             if(containsEdge(rp.vName,dst)){
+                System.out.println(rp.psf+dst);
                 return true;
             }
 
@@ -185,6 +186,55 @@ public class Graph {
                     Pair np=new Pair(nbr,rp.psf+nbr);
 
                     queue.addLast(np);
+                }
+            }
+        }
+
+        return false;
+
+
+    }
+
+    public boolean dfs(String src,String dst){
+
+        HashMap<String ,Boolean> processed=new HashMap<>();
+        //src-source dst-destination
+        LinkedList<Pair> stack=new LinkedList<>();//will work as a queue
+
+        //create a new pair
+        Pair sp=new Pair(src,dst);
+
+        //put the new pair in the queue
+        stack.addFirst(sp);
+
+        while(!stack.isEmpty()){
+            Pair rp=stack.removeFirst();
+
+            if(processed.containsKey(rp.vName)){
+
+                continue;
+            }
+
+            processed.put(rp.vName,true);
+
+            //check direct edge
+
+            if(containsEdge(rp.vName,dst)){
+                System.out.println(rp.psf+dst);
+                return true;
+            }
+
+            //check for neighbors
+            Vertex rpvtex=vertexes.get(rp.vName);//rpvtex-removed vertex
+            ArrayList<String> nbrs=new ArrayList<>(rpvtex.neighbours.keySet());
+
+
+            //process only for unprocessed
+            for(String nbr:nbrs){
+                if(!processed.containsKey(nbr)){
+                    Pair np=new Pair(nbr,rp.psf+nbr);
+
+                    stack.addFirst(np);
                 }
             }
         }

@@ -31,5 +31,6 @@ public class GraphClient {
         System.out.println(bl);
 
         System.out.println(graph.bfs("B","E"));
+        System.out.println(graph.dfs("B","E"));
     }
 }
