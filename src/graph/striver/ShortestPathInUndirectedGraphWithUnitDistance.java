@@ -14,7 +14,7 @@ public class ShortestPathInUndirectedGraphWithUnitDistance {
 
         int[] dist = new int[N];
         for(int i = 0; i < N; i++)
-            dist[i] = 1000000000;
+            dist[i] = Integer.MAX_VALUE;
 
         Queue<Integer> q=new LinkedList<>();
 

@@ -14,6 +14,7 @@ public class isCycleBFS {
             this.parent=parent;
         }
     }
+
     public static boolean isCycle(int V, ArrayList < ArrayList < Integer >> adj) {
 
 
