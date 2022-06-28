@@ -1,23 +1,25 @@
 package StackAndQueue.Stack.AdityaVerma;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Stack;
 
 public class MaximumAreaHistogram {
     public static void main(String[] args) {
+
 //        int arr[]=new int[]{6,2,5,4,5,1,6};
 //
 //        int res=maxAreaHistogram(arr);
 //        System.out.println("The maximum area of this histogram is : "+res);
 
-        int matrix[][]=new int[][]{
-                {0,1,1,0},
-                {1,1,1,1},
-                {1,1,1,1},
-                {1,1,0,0},
-        };
-
-        System.out.println(maxAreaRectangleInBinaryMatrix(matrix));
+//        int matrix[][]=new int[][]{
+//                {0,1,1,0},
+//                {1,1,1,1},
+//                {1,1,1,1},
+//                {1,1,0,0},
+//        };
+//
+//        System.out.println(maxAreaRectangleInBinaryMatrix(matrix));
     }
 
     private static int maxAreaRectangleInBinaryMatrix(int arr[][]){
