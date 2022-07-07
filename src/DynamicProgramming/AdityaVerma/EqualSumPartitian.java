@@ -2,49 +2,54 @@ package DynamicProgramming.AdityaVerma;
 
 public class EqualSumPartitian {
     public static void main(String[] args) {
-        int arr[]=new int []{1,5,8,5,2};
-        boolean res=isEqualSumPartitian(arr);
-        System.out.println(res);
+        int arr[]=new int []{1,5,11,5};
+        System.out.println(equalSumPartitian(arr));
+        System.out.println(subsetSum(arr,11,arr.length));
     }
 
-    private static boolean isEqualSumPartitian(int[] arr) {
+    static boolean equalSumPartitian(int arr[]){
         //calculate sum
         int sum=0;
         for (int i = 0; i < arr.length; i++) {
             sum+=arr[i];
         }
 
+
+
         if(sum%2!=0) return false;
-        else return isSumPossibleTopDown(arr,sum%2);
+
+
+        return subsetSum(arr,sum/2,arr.length);
     }
 
-
-    private static boolean isSumPossibleTopDown(int[] arr, int sum) {
-        int n=arr.length;
+    private static boolean subsetSum(int[] arr, int sum,int n) {
+        boolean tab[][]=new boolean[n+1][sum+1];
         //initialization
-        boolean subset[][] = new boolean[sum + 1][n + 1];
-        for (int i = 0; i <= n; i++)
-            subset[0][i] = true;
-
-
-
-        //choice i->
-        for (int i = 1; i <= sum; i++) {
-            for (int j = 1; j < n+1; j++) {
-                if(arr[j-1]<=i){
-                    subset[i][j] = subset[i][j - 1]
-                            || subset[i - arr[j - 1]][j - 1];
-                }
-                else subset[i][j]=subset[i][j - 1];
+        for (int i = 0; i < n+1; i++) {
+            for (int j = 0; j < sum+1; j++) {
+                if(j==0) tab[i][j]=true;
+                else if(i==0) tab[i][j]=false;
             }
         }
 
-        return subset[sum][arr.length];
+        //code
+        for (int i = 1; i < n+1; i++) {
+            for (int j = 1; j < sum + 1; j++) {
+                if(arr[i-1]<=j){
+                    tab[i][j] = tab[i][j-arr[i-1]] || tab[i-1][j];
+                }
+
+                else {
+                    tab[i][j]=tab[i-1][j];
+                }
+            }
+        }
 
 
 
+
+
+        return tab[n][sum];
     }
-
-
 
 }

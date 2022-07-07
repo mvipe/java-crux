@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ZeroOneKnapsack {
 
     //global variable
-    static int t[][]=new int[100][100];
+
     public static void main(String[] args) {
 
         //set all indexes to -1 in t matrix
@@ -19,6 +19,8 @@ public class ZeroOneKnapsack {
 
         int maxProfit=knapsack_topdown(wt,val,w,wt.length);
         System.out.println(maxProfit);
+
+
 
 
     }
@@ -54,57 +56,65 @@ public class ZeroOneKnapsack {
 
     }
 
+
     //0-1 knapsack memoization
     private static int knapsack_memoization(int[] wt, int[] val, int w, int n) {
+        int mem[][]=new int [w+1][n+1];
+        for (int i = 0; i < mem.length; i++) {
+            Arrays.fill(mem[i],-1);
+        }
+
+        return knapsack_memoization(wt,val,w,n,mem);
+    }
+    private static int knapsack_memoization(int[] wt, int[] val, int w, int n,int mem[][]) {
         //base case
         if(n==0 || w==0){
             return 0;
         }
 
+        if(mem[w][n]!=-1) return mem[w][n];
 
         if(wt[n-1]<=w){
-
-
-
-            t[n][w] = Math.max(
-                    val[n-1]+knapsack_memoization(wt,val,w-wt[n-1],n-1),//case -1 :take it
-                    knapsack_memoization(wt,val,w,n-1)
+            mem[w][n]=Math.max(
+                    val[n-1]+knapsack_memoization(wt,val,w-wt[n-1],n-1,mem),//case -1 :take it
+                    knapsack_memoization(wt,val,w,n-1,mem)
             );
 
-            return t[n][w];
-
+            return mem[w][n];
         }
-
-        t[n][w]=knapsack_memoization(wt,val,w,n-1);
-
-        return  t[n][w];
+        mem[w][n] = knapsack_memoization(wt,val,w,n-1);
+        return mem[w][n];
 
 
     }
 
     //0-1 knapsack top-down
+
+
     private static int knapsack_topdown(int[] wt, int[] val, int w, int n){
+        int tab[][]=new int[w+1][n+1];
         //initialize
-        for (int i = 0; i < n+1; i++) {
-            for (int j = 0; j < w+1; j++) {
+        for (int i = 0; i < w+1; i++) {
+            for (int j = 0; j < n+1; j++) {
                 if(i==0 || n==0){
-                    t[i][j]=0;
+                    tab[i][j]=0;
                 }
             }
         }
 
         //choice diagram
         //w->i n->j
-        for (int i = 1; i < n+1; i++) {
-            for (int j = 1; j < w + 1; j++) {
-                if(wt[i-1]<=j){
-
-                    t[i][j]=Math.max(val[i-1]+t[i-1][j-wt[i-1]],
-                            t[i-1][j]);
+        for (int i = 1; i < w+1; i++) {
+            for (int j = 1; j < n + 1; j++) {
+                if(wt[j-1]<=i){
+                    tab[i][j]=Math.max(
+                            val[j-1]+tab[i-wt[j-1]][j-1],
+                            tab[i][j-1]
+                    );
                 }
 
-                else{
-                    t[i][j]=t[i-1][j];
+                else {
+                    tab[i][j]=tab[i][j-1];
                 }
             }
         }
@@ -112,7 +122,7 @@ public class ZeroOneKnapsack {
 
 
 
-        return t[n][w];
+        return tab[w][n];
     }
 
 
