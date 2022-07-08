@@ -62,7 +62,7 @@ public class SubsetSum {
         for (int i = 1; i < n+1; i++) {
             for (int j = 1; j < sum + 1; j++) {
                 if(arr[i-1]<=j){
-                    tab[i][j] = tab[i][j-arr[i-1]] || tab[i-1][j];
+                    tab[i][j] = tab[i-1][j-arr[i-1]] || tab[i-1][j];
                 }
 
                 else {
