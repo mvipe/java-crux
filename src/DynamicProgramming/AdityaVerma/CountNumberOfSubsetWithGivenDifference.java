@@ -2,7 +2,7 @@ package DynamicProgramming.AdityaVerma;
 
 public class CountNumberOfSubsetWithGivenDifference {
     public static void main(String[] args) {
-int arr[]=new int[]{1,1,2,3};
+        int arr[]=new int[]{1,1,2,3};
         System.out.println(solveTab(arr,1));
     }
 
