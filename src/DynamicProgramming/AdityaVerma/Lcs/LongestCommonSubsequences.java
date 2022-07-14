@@ -4,9 +4,8 @@ import java.util.Arrays;
 
 public class LongestCommonSubsequences {
     public static void main(String[] args) {
-        System.out.println(solveRec("abcreefg","abcdefg"));
-        System.out.println(solveMemo("abcreefg","abcdefg"));
-        System.out.println(solveTabPrint("abcreefg","abcdefg"));
+
+        System.out.println(solveTabPrint("abac","cab"));
     }
 
     static int solveRec(String x,String y){
@@ -153,7 +152,13 @@ public class LongestCommonSubsequences {
             }
         }
 
-        System.out.println("The longest subsequences is "+lcs);
+        //reverse this string
+        String res="";
+        for (int k = lcs.length()-1; k >=0 ; k--) {
+            res+=lcs.charAt(k);
+        }
+
+        System.out.println("The longest subsequences is "+res);
 
 
 
