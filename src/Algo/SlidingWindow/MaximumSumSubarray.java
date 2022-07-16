@@ -17,28 +17,32 @@ public class MaximumSumSubarray {
 
     static long maximumSumSubarray(int k, ArrayList<Integer> arr, int n){
         int j=0;
-        long sum=0;//current sum
+        long prevSum=0;//current sum
         long max=Long.MIN_VALUE;
-        for (int i = 0; i+k-1 != n; j++) {
-            if(j-i+1==k){
-                if(max==Long.MIN_VALUE){
-                    sum=sum+arr.get(j);
-                    max=sum;
-                }else{
-                    sum=sum-arr.get(i-1)+arr.get(j);
-                    max=Math.max(max,sum);
 
-                }
+        if(k>arr.size()) return 0;
 
-                i++;
+        //calculate first sum;
 
+        for (int i = 0; i < k; i++) {
+            prevSum+=arr.get(i);
+        }
 
-            }else{
+        if(prevSum>max){
+            max=prevSum;
+        }
 
-                sum+=arr.get(j);
-
+        //calculate max sum in subarray
+        for (int i = k; i < arr.size(); i++) {
+            long newSum=prevSum + arr.get(i) - arr.get(i-k);
+            prevSum=newSum;
+            if(newSum>max){
+                max=newSum;
             }
         }
+
+
+
 
         return max;
     }

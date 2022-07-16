@@ -3,6 +3,7 @@ package tree.BinaryTree;
 import java.util.*;
 
 public class BinaryTree {
+
     Node root;
     int size;
 
