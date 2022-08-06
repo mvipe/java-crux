@@ -15,7 +15,15 @@ public class TreeTraversal {
         root.left=new Node(2);
         root.right=new Node(1);
 
-        ArrayList<Integer> result=ZigzagTraversal(root);
+        root.left.right=new Node(5);
+        root.left.right.left=new Node(9);
+        root.left.right.right=new Node(8);
+
+        root.right.right=new Node(12);
+        root.right.right.left=new Node(11);
+        root.right.right.left.right=new Node(10);
+
+        ArrayList<Integer> result= boundary(root);
         System.out.println(result.toString());
 
     }
@@ -31,16 +39,46 @@ public class TreeTraversal {
 //        q.add(new Pair<>(root,new Pair<>(0,0)));
 //
 //        while(!q.isEmpty()){
-//            Pair<Node,Pair<Integer,Integer>> temp=q.peek();
+//            Pair<Node,Pair<Integer,Integer>> temp=q.poll();
 //            Node frontNode=temp.getFirst();
 //            int hd=temp.getSecond().getFirst();
 //            int lvl=temp.getSecond().getSecond();
 //
+//            if(nodes.get(hd)==null){
+//                if(nodes.get(hd).get(lvl)==null){
+//                    ArrayList<Integer> list=new ArrayList<>();
+//                    list.add(frontNode.data);
+//
+//                    HashMap<Integer,ArrayList<Integer>> map=new HashMap();
+//                    map.put(lvl,list);
+//                    nodes.put(hd,map);
+//                }else{
+//                    ArrayList<Integer> list=nodes.get(hd).get(lvl);
+//                    list.add(frontNode.data);
+//
+//                    HashMap<Integer,ArrayList<Integer>> map=new HashMap();
+//                    map.put(lvl,list);
+//                    nodes.put(hd,map);
+//                }
+//
+//            }
 //            nodes.put(frontNode.data,new HashMap<>());
+//
+//            if(frontNode.left!=null)
+//                q.add(new Pair<>(frontNode.left,new Pair<>(hd-1,lvl+1)));
+//            if(frontNode.right!=null)
+//                q.add(new Pair<>(frontNode.left,new Pair<>(hd+1,lvl+1)));
+//
 //        }
+//
+////        ArrayList<Integer>
+////
+////        for()
+//
+//
 //    }
 
-    ArrayList <Integer> boundary(Node node)
+    static ArrayList <Integer> boundary(Node node)
     {
         ArrayList<Integer> left=leftPart(node);
         ArrayList<Integer> leaf=leafPart(node);
@@ -61,7 +99,7 @@ public class TreeTraversal {
 
     }
 
-    ArrayList <Integer> leafPart(Node node){
+    static ArrayList <Integer> leafPart(Node node){
         if (node == null)
             return new ArrayList<>();
         if(node.left==null && node.right==null){
@@ -75,13 +113,10 @@ public class TreeTraversal {
         list.addAll(leafPart(node.right));
 
 
-
-
-
         return list;
     }
 
-    ArrayList <Integer> rightPart(Node node){
+    static ArrayList <Integer> rightPart(Node node){
         if(node==null || (node.right==null && node.left==null)) return new ArrayList<>();
 
         if(node.right!=null){
@@ -104,7 +139,7 @@ public class TreeTraversal {
 
     }
 
-    ArrayList <Integer> leftPart(Node node){
+    static ArrayList <Integer> leftPart(Node node){
         if(node==null || (node.right==null && node.left==null)) return new ArrayList<>();
 
         if(node.left!=null){

@@ -40,7 +40,7 @@ int arr[]=new int[]{3,9,12};
 
         //check for minimum difference
         int min=Integer.MAX_VALUE;
-        for (int i = 0; i <tab[0].length; i++) {
+        for (int i = 0; i <tab[0].length/2; i++) {
             if(tab[arr.length-1][i]){
                 min=Math.min(min,(sum-2*i));
             }
