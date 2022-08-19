@@ -32,14 +32,11 @@ public class FirstNegativeIntegerInEveryWindowSize {
                     negativeNumbers.remove(0);
                 }
 
-
-
                 i++;
                 j++;
 
             }
             else{
-
                 j++;
             }
         }
