@@ -13,4 +13,10 @@ public class getIthBit {
     static int setIthBit(int n,int i){
         return (n|(1<<(i-1)));
     }
+
+//    static int resetsetIthBit(int n,int i){
+//        return (n|(1(1<<(i-1))));
+//    }
+
+
 }
