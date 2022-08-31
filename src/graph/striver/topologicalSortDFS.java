@@ -14,7 +14,7 @@ public class topologicalSortDFS {
         st.push(node);
     }
     static int[] topoSort(int N, ArrayList<ArrayList<Integer>> adj) {
-        Stack<Integer> st = new Stack<Integer>();
+        Stack<Integer> st = new Stack();
         int vis[] = new int[N];
 
         for(int i = 0;i<N;i++) {
