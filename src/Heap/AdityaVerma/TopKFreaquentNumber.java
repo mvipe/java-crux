@@ -22,13 +22,7 @@ public class TopKFreaquentNumber {
         HashMap<Integer,Integer> map=new HashMap<>();
 
         for (int i = 0; i < arr.length; i++) {
-            int freq=0;
-            if(map.get(arr[i])==null){
-                freq=1;
-            }else freq=map.get(arr[i])+1;
-
-            map.put(arr[i],freq);
-
+            map.put(arr[i],1+map.getOrDefault(arr[i],0));
         }
 
         PriorityQueue<Pair> minHeap=new PriorityQueue<>();

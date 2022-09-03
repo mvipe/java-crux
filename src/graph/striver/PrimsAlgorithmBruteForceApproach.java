@@ -8,6 +8,7 @@ public class PrimsAlgorithmBruteForceApproach {
         int parent[] = new int[N];
         boolean mstSet[] = new boolean[N];
 
+
         for (int i = 0; i < N; i++) {
             key[i] = 100000000;
             mstSet[i] = false;
